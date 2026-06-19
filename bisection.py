@@ -1,10 +1,10 @@
-def bisection(f, a, b, tolerance=1e-6, max_iterations=100):
+def bisection(f, xl, xu, tolerance=1e-6, max_iterations=100):
     """
     Método de bisección para encontrar la raíz de una función.
     
     Parámetros:
     f: función a la cual encontrar la raíz
-    a, b: extremos del intervalo [a, b]
+    xl, xu: extremos del intervalo [xl, xu]
     tolerance: tolerancia para convergencia
     max_iterations: número máximo de iteraciones
     
@@ -13,38 +13,38 @@ def bisection(f, a, b, tolerance=1e-6, max_iterations=100):
     iterations: número de iteraciones realizadas
     """
     
-    if f(a) * f(b) > 0:
-        raise ValueError("f(a) y f(b) deben tener signos opuestos")
+    if f(xl) * f(xu) > 0:
+        raise ValueError("f(xl) y f(xu) deben tener signos opuestos")
     
     iterations = 0
     
-    while abs(b - a) > tolerance and iterations < max_iterations:
-        c = (a + b) / 2
+    while abs(xu - xl) > tolerance and iterations < max_iterations:
+        xr = (xl + xu) / 2
         
-        print(f"Iteración {iterations + 1}: a={a:.6f}, b={b:.6f}, c={c:.6f}, f(c)={f(c):.6f}")
+        print(f"Iteración {iterations + 1}: xl={xl:.6f}, xu={xu:.6f}, xr={xr:.6f}, f(xr)={f(xr):.6f}")
         
-        if f(c) == 0:
-            return c, iterations + 1
-        elif f(a) * f(c) < 0:
-            b = c
+        if f(xr) == 0:
+            return xr, iterations + 1
+        elif f(xl) * f(xr) < 0:
+            xu = xr
         else:
-            a = c
+            xl = xr
         
         iterations += 1
     
-    root = (a + b) / 2
+    root = (xl + xu) / 2
     return root, iterations
 
 
-# Ejemplo: x² - 3 = 0 en el intervalo [1, 2] con 4 iteraciones
+# Ejemplo: x² - x - 1 = 0 en el intervalo [0, 2]
 print("=" * 70)
-print("Método de Bisección: f(x) = x² - 3 en [1, 2]")
+print("Método de Bisección: f(x) = x² - x - 1 en [0, 2]")
 print("=" * 70)
 
 def f(x):
-    return x**2 - 3
+    return x**2 - x - 1
 
-raiz, iteraciones = bisection(f, 1, 2, tolerance=1e-10, max_iterations=4)
+raiz, iteraciones = bisection(f, 0, 2, tolerance=0.08, max_iterations=100)
 
 print(f"\n{'=' * 70}")
 print(f"RESULTADO FINAL:")
@@ -52,5 +52,23 @@ print(f"{'=' * 70}")
 print(f"Raíz aproximada: {raiz:.10f}")
 print(f"Total de iteraciones: {iteraciones}")
 print(f"Verificación - f({raiz:.10f}) = {f(raiz):.2e}")
-print(f"Valor esperado (√3): {3**0.5:.10f}")
-print(f"Error absoluto: {abs(raiz - 3**0.5):.2e}")
+print(f"Valor esperado (φ = (1+√5)/2): {(1+5**0.5)/2:.10f}")
+print(f"Error absoluto: {abs(raiz - (1+5**0.5)/2):.2e}")
+
+
+# Ejemplo 2: x³ - 7x² + 14x - 6 = 0 en el intervalo [2.7; 3.2]
+print("\n" + "=" * 70)
+print("Método de Bisección: f(x) = x³ - 7x² + 14x - 6 en [2.7; 3.2]")
+print("=" * 70)
+
+def f2(x):
+    return x**3 - 7*x**2 + 14*x - 6
+
+raiz2, iteraciones2 = bisection(f2, 2.7, 3.2, tolerance=0.08, max_iterations=100)
+
+print(f"\n{'=' * 70}")
+print(f"RESULTADO FINAL:")
+print(f"{'=' * 70}")
+print(f"Raíz aproximada: {raiz2:.10f}")
+print(f"Total de iteraciones: {iteraciones2}")
+print(f"Verificación - f({raiz2:.10f}) = {f2(raiz2):.2e}")

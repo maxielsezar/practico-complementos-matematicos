@@ -1,4 +1,4 @@
-# Script para sumar 0.1 + 0.3
+# Script para sumar 0.1 + 0.2
 resultado = 0.1 + 0.2
 
 print(f"0.1 + 0.2 = {resultado}")
