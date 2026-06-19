@@ -14,7 +14,6 @@ def newton_raphson(f, df, x0, tolerance=1e-6, max_iterations=100):
     root: la raíz aproximada
     iterations: número de iteraciones realizadas
     """
-    import numpy as np
     
     iterations = 0
     x = x0
@@ -61,7 +60,6 @@ def secante(f, x0, x1, tolerance=1e-6, max_iterations=100):
     root: la raíz aproximada
     iterations: número de iteraciones realizadas
     """
-    import numpy as np
     
     iterations = 0
     
@@ -111,7 +109,6 @@ def punto_fijo(g, x0, tolerance=1e-6, max_iterations=100):
     root: la raíz aproximada
     iterations: número de iteraciones realizadas
     """
-    import numpy as np
     
     iterations = 0
     x = x0
@@ -250,5 +247,35 @@ print("-" * 70)
 print(f"{'Newton-Raphson':<20} {raiz1:<20.10f} {iter1:<15}")
 print(f"{'Secante':<20} {raiz3:<20.10f} {iter3:<15}")
 print(f"{'Punto Fijo':<20} {raiz4:<20.10f} {iter4:<15}")
-print(f"{'Valor Real (√3)':<20} {3**0.5:<20.10f} {'-':<15}")
+print(f"{'Valor Real (√3)':<20} {3**0.5:<20.10f} {'-':<15}\n")
+
+
+# ============================================================
+# EJEMPLO 5: Método de Punto Fijo para x³ - 7x² + 14x - 6 = 0
+# ============================================================
+print("=" * 70)
+print("MÉTODO: ITERACIÓN DE PUNTO FIJO")
+print("=" * 70)
+print("\nBúsqueda de raíz de f(x) = x³ - 7x² + 14x - 6 = 0")
+print("Intervalo: [2.7; 3.2]")
+print("Reescribiendo como: x = (x³ + 14x - 6) / (7x)")
+print("-" * 70)
+
+def g_pf(x):
+    # Reescribiendo x³ - 7x² + 14x - 6 = 0 como x = (x³ + 14x - 6) / (7x)
+    return (x**3 + 14*x - 6) / (7*x)
+
+raiz_pf, iter_pf = punto_fijo(g_pf, 3.0, tolerance=1e-8)
+
+print(f"\n{'=' * 70}")
+print(f"RESULTADO FINAL - Punto Fijo:")
+print(f"{'=' * 70}")
+print(f"Raíz encontrada: {raiz_pf:.10f}")
+print(f"Iteraciones: {iter_pf}")
+
+# Verificación con la función original
+def f_pf(x):
+    return x**3 - 7*x**2 + 14*x - 6
+
+print(f"Verificación - f({raiz_pf:.10f}) = {f_pf(raiz_pf):.2e}")
 print("=" * 70)
