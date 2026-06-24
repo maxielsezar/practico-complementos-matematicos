@@ -18,6 +18,7 @@ El trabajo práctico busca comprender y aplicar conceptos fundamentales de:
 - `metodos_abiertos.py`: implementación de Newton-Raphson, secante y punto fijo.
 - `suma_flotante.py`: ejemplo que muestra el efecto de la aritmética de punto flotante en operaciones como `0.1 + 0.2`.
 - `graficar_funciones.py`: script para graficar funciones usando `numpy` y `matplotlib`.
+- `eliminacion_gauss.py`: script para resolver sistemas de ecuaciones lineales mediante eliminación de Gauss con pivoteo parcial.
 
 ## Resumen de la resolución
 
@@ -48,6 +49,11 @@ Se demuestra que algunas operaciones decimales no se representan con exactitud e
 ### 5. Graficación de funciones
 Se implementó un script que permite graficar una o más funciones en un intervalo determinado y guardar la imagen en formato PNG.
 
+### 6. Eliminación de Gauss
+Se agregó un script para resolver sistemas lineales de la forma $Ax = b$ mediante eliminación de Gauss.
+
+Este método transforma la matriz ampliada del sistema en una forma escalonada y luego resuelve por sustitución regresiva. Además, incorpora pivoteo parcial para evitar problemas cuando aparece un cero en la diagonal.
+
 ## Requisitos
 
 Para ejecutar las gráficas es necesario tener instaladas las librerías:
@@ -66,6 +72,7 @@ py -3 falsa_posicion.py
 py -3 metodos_abiertos.py
 py -3 suma_flotante.py
 py -3 graficar_funciones.py
+py -3 eliminacion_gauss.py
 ```
 
 ## Resultado esperado
@@ -75,8 +82,9 @@ Al ejecutar los scripts se obtienen:
 - aproximaciones de raíces de funciones,
 - tablas de iteraciones para los métodos numéricos,
 - una demostración del comportamiento de los números en punto flotante,
-- una gráfica guardada como `grafica_funciones.png`.
+- una gráfica guardada como `grafica_funciones.png`,
+- la solución de sistemas lineales mediante eliminación de Gauss.
 
 ## Autor
 
-Proyecto desarrollado para el trabajo práctico de Complementos Matemáticos.
+Proyecto desarrollado por Maximiliano Elsezar para el trabajo práctico de Complementos Matemáticos.
