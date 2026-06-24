@@ -279,3 +279,36 @@ def f_pf(x):
 
 print(f"Verificación - f({raiz_pf:.10f}) = {f_pf(raiz_pf):.2e}")
 print("=" * 70)
+
+
+# ============================================================
+# EJEMPLO 6: Método de Punto Fijo para 1/(x-1.5) - 2 = 0
+# ============================================================
+print("\n" + "=" * 70)
+print("MÉTODO: ITERACIÓN DE PUNTO FIJO")
+print("=" * 70)
+print("\nBúsqueda de raíz de f(x) = 1/(x - 1.5) - 2 = 0")
+print("Reescribiendo como: x = 1/2 + 1.5")
+print("-" * 70)
+
+def g_2(x):
+    # Reescribiendo 1/(x - 1.5) - 2 = 0 como x = 1/2 + 1.5
+    # De: 1/(x - 1.5) = 2
+    # x - 1.5 = 1/2
+    # x = 1/2 + 1.5 = 2
+    return 1/2 + 1.5
+
+raiz_2, iter_2 = punto_fijo(g_2, 2.0, tolerance=1e-8, max_iterations=5)
+
+print(f"\n{'=' * 70}")
+print(f"RESULTADO FINAL - Punto Fijo:")
+print(f"{'=' * 70}")
+print(f"Raíz encontrada: {raiz_2:.10f}")
+print(f"Iteraciones: {iter_2}")
+
+# Verificación con la función original
+def f_2(x):
+    return 1/(x - 1.5) - 2
+
+print(f"Verificación - f({raiz_2:.10f}) = {f_2(raiz_2):.2e}")
+print("=" * 70)
